@@ -15,7 +15,7 @@ runs:
       run: deno run -A _vendor/github.com/reima-ecom/reima-theme/v2/importers/import-collections/cmd.ts ${{inputs.shop}} products/collections
       shell: bash
     - name: Get Shopify products
-      run: deno run -A _vendor/github.com/reima-ecom/reima-theme/v2/importers/products/cmd.ts ${{inputs.shop}} ${{inputs.shopify-token}} products/products
+      run: deno run -A _vendor/github.com/reima-ecom/reima-theme/v2/importers/products/cmd.ts ${{inputs.shop}} ${{inputs.storefront-token}} products/products
       shell: bash
     - name: Commit products
       run: |
