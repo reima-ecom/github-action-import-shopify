@@ -1,6 +1,6 @@
 # github-action-import-shopify
 
-Import products and collections from Shopify in a way expected by `reima-ecom/reima-theme`c
+Import products and collections from Shopify in a way expected by `reima-ecom/reima-theme`.
 
 Requires Deno and Hugo. Example:
 
