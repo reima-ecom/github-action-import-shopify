@@ -1,0 +1,28 @@
+name: 'Import Shopify products and collections'
+inputs:
+  shop:
+    description: 'Shopify shop name'
+    required: true
+  storefront-token:
+    description: 'Shopify storefront token'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: hugo mod vendor
+      shell: bash
+    - name: Get Shopify collections
+      run: deno run -A _vendor/github.com/reima-ecom/reima-theme/v2/importers/import-collections/cmd.ts ${{inputs.shop}} products/collections
+      shell: bash
+    - name: Get Shopify products
+      run: deno run -A _vendor/github.com/reima-ecom/reima-theme/v2/importers/products/cmd.ts ${{inputs.shop}} ${{inputs.shopify-token}} products/products
+      shell: bash
+    - name: Commit products
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add products
+        git diff --staged --exit-code || git commit -m "Updated products and collections"
+        git pull
+        git push
+      shell: bash
