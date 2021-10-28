@@ -21,11 +21,10 @@ runs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git config pull.rebase true
         git status
         git add products
         git diff --staged --exit-code || git commit -m "Updated products and collections"
         git status
-        git pull
+        git pull --rebase --autostash
         git push
       shell: bash
